@@ -1,0 +1,64 @@
+---
+- hosts: localhost
+  roles:
+     - { role: ansiblebit.oracle-java,
+         oracle_java_set_as_default: yes }
+     - jdauphant.intellij
+  vars:
+    - apt_file: /etc/apt/sources.list.d/google-chrome.list
+  tasks:
+    - name: Allow 'sudo' group to have passwordless sudo
+      lineinfile:
+        backup: yes
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+
+    - name: Add Google Chrome key
+      apt_key:
+        url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+        state: present
+
+    - name: Add Google Chrome repo
+      copy:
+        content: "deb http://dl.google.com/linux/chrome/deb/ stable main"
+        dest: "{{apt_file}}"
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Install Debian packages
+      apt:
+        name: "{{item}}"
+        state: installed
+        update_cache: yes
+      with_items:
+        - git
+        - google-chrome-stable
+        - python-pip
+        - terminator
+        - vagrant
+        - vim
+
+    - name: Install Pip packages
+      pip:
+        name: "{{ item }}"
+      with_items:
+        - ansible-lint
+
+    - name: Create high level scratch directory
+      file:
+        path: /scratch
+        state: directory
+        mode: 0755
+
+    - name: Create scratch directory for users
+      file:
+        path: "/scratch/{{ item }}"
+        owner: "{{ item }}"
+        group: "{{ item }}"
+        state: directory
+        mode: 0700
+      with_items:
+        - ben
