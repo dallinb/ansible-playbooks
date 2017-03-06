@@ -39,6 +39,13 @@
       tags:
         - config
 
+    - name: Add Atlassian Hipchat repo
+      apt_repository:
+        repo: deb https://atlassian.artifactoryonline.com/atlassian/hipchat-apt-client xenial main
+        state: present
+      tags:
+        - config
+
     - name: Add WineHQ repo
       apt_repository:
         repo: 'ppa:wine/wine-builds'
@@ -54,9 +61,12 @@
       with_items:
         - git
         - google-chrome-stable
+        - hipchat4
+        - jq
         - python-pip
         - terminator
         - vagrant
+        - virtualbox-qt
         - vim
         - wine
       tags:

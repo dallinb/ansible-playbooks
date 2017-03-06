@@ -5,6 +5,8 @@ out
 gen
 .idea/
 
+# Project ignore
 /roles/ansiblebit.launchpad-ppa-webupd8/
 /roles/ansiblebit.oracle-java/
 /roles/jdauphant.intellij/
+*.retry
