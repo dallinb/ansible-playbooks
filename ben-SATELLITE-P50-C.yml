@@ -28,6 +28,11 @@
         group: root
         mode: 0644
 
+    - name: Add WineHQ repo
+      apt_repository:
+        repo: 'ppa:wine/wine-builds'
+        state: present
+
     - name: Install Debian packages
       apt:
         name: "{{item}}"
@@ -40,6 +45,7 @@
         - terminator
         - vagrant
         - vim
+        - wine
 
     - name: Install Pip packages
       pip:
