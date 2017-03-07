@@ -64,6 +64,7 @@
         - hipchat4
         - jq
         - python-pip
+        - sshuttle
         - terminator
         - vagrant
         - virtualbox-qt
