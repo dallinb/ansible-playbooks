@@ -17,6 +17,20 @@
       tags:
         - config
 
+    - name: Add Docker Key
+      apt_key:
+        url: "https://download.docker.com/linux/ubuntu/gpg"
+        state: present
+      tags:
+        - config
+
+    - name: Add Docker repo
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+        state: present
+      tags:
+        - config
+
     - name: Add Google Chrome key
       apt_key:
         url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
@@ -59,6 +73,7 @@
         state: installed
         update_cache: yes
       with_items:
+        - docker-ce
         - git
         - google-chrome-stable
         - hipchat4
@@ -98,5 +113,21 @@
         mode: 0700
       with_items:
         - ben
+      tags:
+        - config
+
+    - name: Ensure ben is a docker
+      user:
+        name: ben
+        groups: docker
+        append: yes
+      tags:
+        - config
+
+    - name: Ensure Docker is enabled and started.
+      service:
+        name: docker
+        state: started
+        enabled: yes
       tags:
         - config
