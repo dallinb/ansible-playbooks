@@ -131,3 +131,12 @@
         enabled: yes
       tags:
         - config
+
+    - name: Clear older versions of Idea
+      file:
+        path: "/opt/intellij/{{ item }}"
+        state: absent
+      with_items:
+        - idea-IC-163.12024.16
+      tags:
+        - config
