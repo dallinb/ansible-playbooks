@@ -1,4 +1,10 @@
 ---
+# Author: Ben =D=
+# Description: Install a Xenial workstation
+#
+# Examples:
+#  ```ansible-galaxy install -r roles/roles.yml
+#  ansible-playbook ben-SATELLITE-P50-C.yml --ask-sudo-pass```
 - hosts: localhost
   roles:
      - { role: ansiblebit.oracle-java,
@@ -67,6 +73,7 @@
       tags:
         - config
 
+    # Install a collection of packages.
     - name: Install Debian packages
       apt:
         name: "{{item}}"
@@ -78,6 +85,7 @@
         - google-chrome-stable
         - hipchat4
         - jq
+        - nmap
         - python-pip
         - sshuttle
         - terminator
@@ -92,6 +100,7 @@
       pip:
         name: "{{ item }}"
       with_items:
+        - ansible-docgen
         - ansible-lint
       tags:
         - patch

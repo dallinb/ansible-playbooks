@@ -6,6 +6,7 @@ gen
 .idea/
 
 # Project ignore
+/roles/README.md
 /roles/ansiblebit.launchpad-ppa-webupd8/
 /roles/ansiblebit.oracle-java/
 /roles/jdauphant.intellij/
