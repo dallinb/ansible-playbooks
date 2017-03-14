@@ -1,0 +1,10 @@
+---
+# Author: Ben =D=
+# Description: Do a system upgrade.
+- hosts: localhost
+  tasks:
+    - name: Distribution Upgrade (autoremove and update)
+      apt:
+        autoremove: yes
+        cache_valid_time: 3600
+        upgrade: dist
