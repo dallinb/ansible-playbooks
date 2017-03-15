@@ -149,3 +149,23 @@
         - idea-IC-163.12024.16
       tags:
         - config
+
+    - name: Install ArgoUML
+      unarchive:
+        creates: '/usr/local/argouml-0.34'
+        dest: '/usr/local'
+        remote_src: yes
+        src: 'http://argouml-downloads.tigris.org/nonav/argouml-0.34/ArgoUML-0.34.tar.gz'
+      tags:
+        - patch
+
+    - name: Create Symbolic Links for ArgoUML
+      file:
+        path: "/usr/local/bin/{{ item }}"
+        src: "/usr/local/argouml-0.34/{{ item }}"
+        state: link
+      with_items:
+        - argouml.sh
+        - argouml2.sh
+      tags:
+        - patch
