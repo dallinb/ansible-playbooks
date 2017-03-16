@@ -10,8 +10,6 @@
      - { role: ansiblebit.oracle-java,
          oracle_java_set_as_default: yes }
      - jdauphant.intellij
-  vars:
-    - apt_file: /etc/apt/sources.list.d/google-chrome.list
   tasks:
     - name: Allow 'sudo' group to have passwordless sudo
       lineinfile:
