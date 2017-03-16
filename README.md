@@ -33,6 +33,10 @@
 
 > **Task:** Clear older versions of Idea
 
+> **Task:** Install ArgoUML
+
+> **Task:** Create Symbolic Links for ArgoUML
+
 
 ## Playbook: [upgrade.yml](upgrade.yml)
 > **Author:** Ben =D=
