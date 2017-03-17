@@ -167,3 +167,19 @@
         - argouml2.sh
       tags:
         - patch
+
+    - name: Check if Atom is installed
+      stat:
+        path: /usr/bin/atom
+      register: atom_binary_exists
+      tags:
+        - patch
+        - atom
+
+    - name: Download and install Atom
+      apt:
+        deb: 'https://atom.io/download/deb'
+      when: atom_binary_exists.stat.exists == False
+      tags:
+        - patch
+        - atom

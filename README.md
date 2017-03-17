@@ -37,6 +37,10 @@
 
 > **Task:** Create Symbolic Links for ArgoUML
 
+> **Task:** Check if Atom is installed
+
+> **Task:** Download and install Atom
+
 
 ## Playbook: [upgrade.yml](upgrade.yml)
 > **Author:** Ben =D=
