@@ -78,6 +78,7 @@
         state: installed
         update_cache: yes
       with_items:
+        - cowsay
         - docker-ce
         - git
         - google-chrome-stable
