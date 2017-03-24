@@ -41,6 +41,10 @@
 
 > **Task:** Download and install Atom
 
+> **Task:** Check if DropBox is installed
+
+> **Task:** Download and install DropBox
+
 
 ## Playbook: [upgrade.yml](upgrade.yml)
 > **Author:** Ben =D=

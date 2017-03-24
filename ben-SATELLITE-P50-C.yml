@@ -85,6 +85,7 @@
         - hipchat4
         - jq
         - nmap
+        - python-gpgme
         - python-pip
         - sshuttle
         - terminator
@@ -184,3 +185,19 @@
       tags:
         - patch
         - atom
+
+    - name: Check if DropBox is installed
+      stat:
+        path: /usr/bin/dropbox
+      register: dropbox_binary_exists
+      tags:
+        - patch
+        - dropbox
+
+    - name: Download and install DropBox
+      apt:
+        deb: 'https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb'
+      when: dropbox_binary_exists.stat.exists == False
+      tags:
+        - patch
+        - dropbox
