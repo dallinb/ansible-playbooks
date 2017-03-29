@@ -85,6 +85,8 @@
         - hipchat4
         - jq
         - nmap
+        - pep8
+        - pep257
         - python-gpgme
         - python-pip
         - sshuttle
