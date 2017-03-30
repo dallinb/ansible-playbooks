@@ -203,3 +203,11 @@
       tags:
         - patch
         - dropbox
+
+    - name: Install CircleCI CLI
+      get_url:
+        dest: '/usr/local/bin/circleci'
+        mode: 'u=rwx,g=rx,o=rx'
+        url: 'https://circle-downloads.s3.amazonaws.com/releases/build_agent_wrapper/circleci'
+      tags:
+        - patch
