@@ -87,7 +87,9 @@
         - nmap
         - pep8
         - pep257
+        - pinta
         - python-gpgme
+        - python-kombu
         - python-pip
         - sshuttle
         - terminator
