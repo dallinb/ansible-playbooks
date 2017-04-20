@@ -84,6 +84,7 @@
         - google-chrome-stable
         - hipchat4
         - jq
+        - libnss3-tools
         - nmap
         - pep8
         - pep257
@@ -106,6 +107,7 @@
       with_items:
         - ansible-docgen
         - ansible-lint
+        - jmespath
       tags:
         - patch
 
