@@ -9,7 +9,6 @@
   roles:
      - { role: ansiblebit.oracle-java,
          oracle_java_set_as_default: yes }
-     - jdauphant.intellij
   tasks:
     - name: Allow 'sudo' group to have passwordless sudo
       lineinfile:
@@ -215,3 +214,9 @@
         url: 'https://circle-downloads.s3.amazonaws.com/releases/build_agent_wrapper/circleci'
       tags:
         - patch
+
+    - name: Remove deprecated files
+      file:
+        path: "{{ item }}"
+      with_items:
+        - /opt/intellij

@@ -47,6 +47,8 @@
 
 > **Task:** Install CircleCI CLI
 
+> **Task:** Remove deprecated files
+
 
 ## Playbook: [upgrade.yml](upgrade.yml)
 > **Author:** Ben =D=
