@@ -45,6 +45,8 @@
 
 > **Task:** Download and install DropBox
 
+> **Task:** Install CircleCI CLI
+
 
 ## Playbook: [upgrade.yml](upgrade.yml)
 > **Author:** Ben =D=
