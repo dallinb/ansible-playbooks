@@ -218,5 +218,6 @@
     - name: Remove deprecated files
       file:
         path: "{{ item }}"
+        state: absent
       with_items:
         - /opt/intellij
