@@ -79,6 +79,7 @@
       with_items:
         - cowsay
         - docker-ce
+        - docker-compose
         - git
         - google-chrome-stable
         - hipchat4
