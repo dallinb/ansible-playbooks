@@ -84,6 +84,7 @@
         - gnome-gmail
         - google-chrome-stable
         - hipchat4
+        - jmeter-http
         - jq
         - libnss3-tools
         - nmap
