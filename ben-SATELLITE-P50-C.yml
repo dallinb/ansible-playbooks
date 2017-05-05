@@ -81,6 +81,7 @@
         - docker-ce
         - docker-compose
         - git
+        - gnome-gmail
         - google-chrome-stable
         - hipchat4
         - jq
