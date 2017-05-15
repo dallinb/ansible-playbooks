@@ -86,6 +86,7 @@
         - hipchat4
         - jmeter-http
         - jq
+        - keepass2
         - libnss3-tools
         - nmap
         - pep8
