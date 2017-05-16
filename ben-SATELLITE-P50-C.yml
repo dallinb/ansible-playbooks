@@ -111,6 +111,7 @@
         - ansible-docgen
         - ansible-lint
         - jmespath
+        - pylama
       tags:
         - patch
 
