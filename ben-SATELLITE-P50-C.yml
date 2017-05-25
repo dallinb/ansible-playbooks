@@ -77,6 +77,7 @@
         state: installed
         update_cache: yes
       with_items:
+        - awscli
         - cowsay
         - docker-ce
         - docker-compose
