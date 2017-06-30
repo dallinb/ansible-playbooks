@@ -93,6 +93,7 @@
         - pep8
         - pep257
         - pinta
+        - python-boto3
         - python-gpgme
         - python-kombu
         - python-pip
@@ -111,6 +112,8 @@
       with_items:
         - ansible-docgen
         - ansible-lint
+        - boto
+        - boto3
         - jmespath
         - pylama
       tags:
