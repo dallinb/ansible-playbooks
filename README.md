@@ -1,4 +1,12 @@
-## Playbook: [ben-SATELLITE-P50-C.yml](ben-SATELLITE-P50-C.yml)
+## Playbook: [upgrade.yml](upgrade.yml)
+> **Author:** Ben =D=
+
+> **Description:** Do a system upgrade.
+
+> **Task:** Distribution Upgrade (autoremove and update)
+
+
+## Playbook: [site.yml](site.yml)
 > **Author:** Ben =D=
 
 > **Description:** Install a Xenial workstation
@@ -54,14 +62,6 @@
 > **Task:** Download Slack
 
 > **Task:** Install Slack
-
-
-## Playbook: [upgrade.yml](upgrade.yml)
-> **Author:** Ben =D=
-
-> **Description:** Do a system upgrade.
-
-> **Task:** Distribution Upgrade (autoremove and update)
 
 
 
