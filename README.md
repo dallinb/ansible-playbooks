@@ -49,6 +49,12 @@
 
 > **Task:** Remove deprecated files
 
+> **Task:** Check if Slack is installed
+
+> **Task:** Download Slack
+
+> **Task:** Install Slack
+
 
 ## Playbook: [upgrade.yml](upgrade.yml)
 > **Author:** Ben =D=

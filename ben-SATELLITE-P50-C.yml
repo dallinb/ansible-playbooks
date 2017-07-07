@@ -78,6 +78,8 @@
         update_cache: yes
       with_items:
         - awscli
+        - clamav-daemon
+        - clamtk
         - cowsay
         - docker-ce
         - docker-compose
@@ -230,3 +232,25 @@
         state: absent
       with_items:
         - /opt/intellij
+
+    - name: Check if Slack is installed
+      stat:
+        path: /usr/bin/slack
+      register: slack
+
+    - name: Download Slack
+      get_url:
+        dest: '/tmp/slack-desktop-2.6.3-amd64.deb'
+        mode: 'u=rwx,g=rx,o=rx'
+        url: 'https://downloads.slack-edge.com/linux_releases/slack-desktop-2.6.3-amd64.deb'
+      when:
+        slack.stat.exists == false
+
+      tags:
+        - patch
+
+    - name: Install Slack
+      apt:
+        deb: /tmp/slack-desktop-2.6.3-amd64.deb
+      when:
+        slack.stat.exists == false
