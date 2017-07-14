@@ -1,10 +1,7 @@
 ---
+# site.yml
 # Author: Ben =D=
-# Description: Install a Xenial workstation
-#
-# Examples:
-#  ```ansible-galaxy install -r roles/roles.yml
-#  ansible-playbook ben-SATELLITE-P50-C.yml --ask-sudo-pass```
+# Description: Install a workstation
 - hosts: localhost
   roles:
      - { role: ansiblebit.oracle-java,

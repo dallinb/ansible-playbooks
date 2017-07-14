@@ -1,4 +1,7 @@
 ---
+# roles/locp_workstation/tasks/main.yml
+# Author: Ben =D=
+# Description: Workstation role
 - name: Include a Debian list of tasks
-  include: Debian.yml
+  include: tasks/Debian.yml
   when: ansible_os_family == 'Debian'

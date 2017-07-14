@@ -9,59 +9,7 @@
 ## Playbook: [site.yml](site.yml)
 > **Author:** Ben =D=
 
-> **Description:** Install a Xenial workstation
-
-> **Task:** Allow 'sudo' group to have passwordless sudo
-
-> **Task:** Add Docker Key
-
-> **Task:** Add Docker repo
-
-> **Task:** Add Google Chrome key
-
-> **Task:** Add Google Chrome repo
-
-> **Task:** Add Atlassian key
-
-> **Task:** Add Atlassian Hipchat repo
-
-> **Task:** Add WineHQ repo
-
-> **Task:** Install Debian packages
-
-> **Task:** Install Pip packages
-
-> **Task:** Create high level scratch directory
-
-> **Task:** Create scratch directory for users
-
-> **Task:** Ensure ben is a docker
-
-> **Task:** Ensure Docker is enabled and started.
-
-> **Task:** Clear older versions of Idea
-
-> **Task:** Install ArgoUML
-
-> **Task:** Create Symbolic Links for ArgoUML
-
-> **Task:** Check if Atom is installed
-
-> **Task:** Download and install Atom
-
-> **Task:** Check if DropBox is installed
-
-> **Task:** Download and install DropBox
-
-> **Task:** Install CircleCI CLI
-
-> **Task:** Remove deprecated files
-
-> **Task:** Check if Slack is installed
-
-> **Task:** Download Slack
-
-> **Task:** Install Slack
+> **Description:** Install a workstation
 
 
 
