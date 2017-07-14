@@ -1,0 +1,166 @@
+---
+- name: Allow 'sudo' group to have passwordless sudo
+  lineinfile:
+    backup: yes
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+
+- name: Add Docker Key
+  apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+
+- name: Add Docker repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+    state: present
+
+- name: Add Google Chrome key
+  apt_key:
+    url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+    state: present
+
+- name: Add Google Chrome repo
+  apt_repository:
+    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: 'google-chrome'
+
+- name: Add Atlassian key
+  apt_key:
+    url: "https://atlassian.artifactoryonline.com/atlassian/api/gpg/key/public"
+    state: present
+
+- name: Add Atlassian Hipchat repo
+  apt_repository:
+    repo: deb https://atlassian.artifactoryonline.com/atlassian/hipchat-apt-client xenial main
+    state: present
+
+- name: Add WineHQ repo
+  apt_repository:
+    repo: 'ppa:wine/wine-builds'
+    state: present
+
+# Install a collection of packages.
+- name: Install Debian packages
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('installed') }}"
+    update_cache: "{{ item.update_cache | default('no') }}"
+  with_items: "{{ debian_packages }}"
+
+- name: Install Pip packages
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - ansible-docgen
+    - ansible-lint
+    - boto
+    - boto3
+    - jmespath
+    - pylama
+
+- name: Create high level scratch directory
+  file:
+    path: /scratch
+    state: directory
+    mode: 0755
+
+- name: Create scratch directory for users
+  file:
+    path: "/scratch/{{ item }}"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    state: directory
+    mode: 0700
+  with_items:
+    - ben
+
+- name: Ensure ben is a docker
+  user:
+    name: ben
+    groups: docker
+    append: yes
+
+- name: Ensure Docker is enabled and started.
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Clear older versions of Idea
+  file:
+    path: "/opt/intellij/{{ item }}"
+    state: absent
+  with_items:
+    - idea-IC-163.12024.16
+
+- name: Install ArgoUML
+  unarchive:
+    creates: '/usr/local/argouml-0.34'
+    dest: '/usr/local'
+    remote_src: yes
+    src: 'http://argouml-downloads.tigris.org/nonav/argouml-0.34/ArgoUML-0.34.tar.gz'
+
+- name: Create Symbolic Links for ArgoUML
+  file:
+    path: "/usr/local/bin/{{ item }}"
+    src: "/usr/local/argouml-0.34/{{ item }}"
+    state: link
+  with_items:
+    - argouml.sh
+    - argouml2.sh
+
+- name: Check if Atom is installed
+  stat:
+    path: /usr/bin/atom
+  register: atom_binary_exists
+
+- name: Download and install Atom
+  apt:
+    deb: 'https://atom.io/download/deb'
+  when: atom_binary_exists.stat.exists == False
+
+- name: Check if DropBox is installed
+  stat:
+    path: /usr/bin/dropbox
+  register: dropbox_binary_exists
+
+- name: Download and install DropBox
+  apt:
+    deb: 'https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb'
+  when: dropbox_binary_exists.stat.exists == False
+
+- name: Install CircleCI CLI
+  get_url:
+    dest: '/usr/local/bin/circleci'
+    mode: 'u=rwx,g=rx,o=rx'
+    url: 'https://circle-downloads.s3.amazonaws.com/releases/build_agent_wrapper/circleci'
+
+- name: Remove deprecated files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /opt/intellij
+
+- name: Check if Slack is installed
+  stat:
+    path: /usr/bin/slack
+  register: slack
+
+- name: Download Slack
+  get_url:
+    dest: '/tmp/slack-desktop-2.6.3-amd64.deb'
+    mode: 'u=rwx,g=rx,o=rx'
+    url: 'https://downloads.slack-edge.com/linux_releases/slack-desktop-2.6.3-amd64.deb'
+  when:
+    slack.stat.exists == false
+
+- name: Install Slack
+  apt:
+    deb: /tmp/slack-desktop-2.6.3-amd64.deb
+  when:
+    slack.stat.exists == false

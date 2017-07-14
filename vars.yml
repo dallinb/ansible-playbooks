@@ -6,7 +6,7 @@
 #  ```ansible-galaxy install -r roles/roles.yml
 #  ansible-playbook ben-SATELLITE-P50-C.yml --ask-sudo-pass```
 - hosts: localhost
-  roles:
-     - { role: ansiblebit.oracle-java,
-         oracle_java_set_as_default: yes }
-     - { role: locp_workstation }
+  tasks:
+    - name: Show me the data
+      debug:
+        msg: "{{ vars }}"
