@@ -2,6 +2,7 @@
 name: Create an Artefact
 
 on:
+  push:
     tags:
       - 0.*
 
