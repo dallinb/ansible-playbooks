@@ -15,6 +15,7 @@ jobs:
 
       - name: Get the Latest Tag
         run: |
+          git log
           git tag
           echo ::set-env name=LATEST_TAG::$( git tag )
 
