@@ -4,7 +4,7 @@ name: Create an Artefact
 on:
   push:
     branches:
-      - feature/DIO-538_inject_version_number_into_artefact
+      - workflows
 
 jobs:
   artefact:
