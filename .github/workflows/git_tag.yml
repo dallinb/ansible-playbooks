@@ -2,9 +2,6 @@
 name: Create an Artefact
 
 on:
-  push:
-    branches:
-      - workflows
     tags:
       - 0.*
 
@@ -15,24 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
       - name: Show GitHub ref
         run: echo "$GITHUB_REF"
 
-      - name: Dump event JSON
-        env:
-          EVENT_JSON_FILENAME: ${{ github.event_path }}
-        run: cat "$EVENT_JSON_FILENAME"
-
       - name: Get the Latest Tag
-        run: |
-          git log
-          git tag
-          echo ::set-env name=LATEST_TAG::$( git tag )
+        run: echo ::set-env name=TAG::$( echo $GITHUB_REF | cut -d/ -f3- )
 
-      - name: Show the Latest Tag
-        run: echo The latest tag in the repo is $LATEST_TAG
+      - name: Show the Tag
+        run: echo The latest tag in the repo is $TAG
