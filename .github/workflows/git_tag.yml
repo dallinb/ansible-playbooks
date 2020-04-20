@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Get the Latest Tag
-        run: echo ::set-env name=LATEST_TAG::$( git tag )
+        run: |
+          git tag
+          echo ::set-env name=LATEST_TAG::$( git tag )
 
       - name: Show the Latest Tag
         run: echo The latest tag in the repo is $LATEST_TAG
