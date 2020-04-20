@@ -1,0 +1,21 @@
+---
+name: Create an Artefact
+
+on:
+  push:
+    branches:
+      - feature/DIO-538_inject_version_number_into_artefact
+
+jobs:
+  artefact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get the Latest Tag
+        id: latest_git_tag
+        run: echo ::set-output name=TAG::$( git tag )
+
+      - name: Show the Latest Tag
+        run: echo The latest tag in the repo is ${{ steps.latest_git_tag.outputs.TAG }}
