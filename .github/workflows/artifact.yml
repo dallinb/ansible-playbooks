@@ -17,7 +17,7 @@ jobs:
         run: echo "$GITHUB_REF"
 
       - name: Get the Latest Tag
-        run: echo ::set-env name=TAG::$( echo $GITHUB_REF | cut -d/ -f3- )
+        run: echo ::set-env name=TAG::$( echo $GITHUB_REF | cut -d/ -f4- )
 
       - name: Show the Tag
         run: echo The latest tag in the repo is $TAG
