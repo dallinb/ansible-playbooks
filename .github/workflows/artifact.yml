@@ -21,3 +21,8 @@ jobs:
 
       - name: Show the Tag
         run: echo The latest tag in the repo is $TAG
+
+      - name: Some Stuff
+        run: |
+          mkdir "/tmp/tag-${TAG}"
+          ls -l /tmp
