@@ -3,8 +3,8 @@ name: Create an Artefact
 
 on:
   push:
-    tags:
-      - 0.*
+    branches:
+      - release/*
 
 jobs:
   artefact:
